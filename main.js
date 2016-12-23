@@ -14,8 +14,6 @@ function addItem(e) {
 	populateList(items, itemsList)
 	localStorage.setItem('items', JSON.stringify(items))
 	this.reset()
-	console.log('item:', item )
-	console.table( items )
 };
 
 // takes an array of items and an HTML element
@@ -30,17 +28,16 @@ function populateList(plates=[], platesList ) {
 	}).join('')
 }
 
-// function toggleDone(e) {
-// 	if (!e.target.matches('input')) return;
-// 	const el = e.target;
-// 	const index = el.dataset.index;
-// 	items[index].done = !items[index].done;
-// 	localStorage.setItem('items', JSON.stringify(items));
-// 	populateList(items, itemsList);
-
-// }
+function toggleDone(e) {
+	if (!e.target.matches('input')) return;
+	const el = e.target;
+	const index = el.dataset.index;
+	items[index].done = !items[index].done;
+	localStorage.setItem('items', JSON.stringify(items));
+	populateList(items, itemsList);
+}
 
 populateList(items, itemsList);
 
-// itemsList.addEventListener('click', toggleDone);
+itemsList.addEventListener('click', toggleDone);
 addItems.addEventListener('submit', addItem);
