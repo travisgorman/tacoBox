@@ -6,34 +6,25 @@ const items = [];
 function addItem(e) {
 	e.preventDefault()
 	const text = this.querySelector('[name=item]').value;
-	const item = {
-		text,
-		done: false
-	}
-
+	const item = {text, done: false }
 	items.push(item)
-
+	populateList(items, itemsList)
 	this.reset()
-
 	console.log('item:', item )
-	console.log('items:', items )
+	console.table( items )
 };
 
+// takes an array of items and an HTML element
+function populateList(plates=[], platesList ) {
+	platesList.innerHTML = plates.map((plate, i) =>{
+		return `
+		<li>
+			<label for="">${plate.text}</label>
+		</li>
+		`;
+	}).join('')
+}
 
-
-
-// populateList takes an array called `plates` and `platesList`
-// maps over the plates array, setting the platesList's inner HTML to 
-
-// function populateList(plates = [], platesList) {
-// 	platesList.innerHTML = plates.map((plate, i) => {
-// 		return `
-// 			<li>
-// 				<label for="">${plate.text}</label>
-// 			</li>
-// 		`;
-// 	}).join('');
-// }
 
 
 addItems.addEventListener('submit', addItem);
